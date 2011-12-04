@@ -94,6 +94,7 @@ sub eq {
 sub up {
     my $self = shift;
     push @{ $self->paths }, "..";
+    return $self;
 }
 
 sub stop {
