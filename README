@@ -1,28 +1,60 @@
-This is Perl module XML::XPathBuilder.
+NAME
+    XML::XPathBuilder - Build path which for the XPath
 
-INSTALLATION
+SYNOPSIS
+      use XML::XPathBuilder;
+      my $builder = XML::XPathBuilder->new;
 
-XML::XPathBuilder installation is straightforward. If your CPAN shell is set up,
-you should just be able to do
+      $buider->find("//foo")->include("bar")->find("baz");
 
-    % cpan XML::XPathBuilder
+DESCRIPTION
+    The jQeury remembers a context in the DOM. XPath can the same? i want
+    it.
 
-Download it, unpack it, then build it as per the usual:
+    i love XPath, but it has long path when doing a bit challenging way.
 
-    % perl Makefile.PL
-    % make && make test
+    i learned XPath can //foo[.="bar"]/../baz, but it is difficult to write
+    to my template engine.
 
-Then install it:
+ATTRIBUTES
+    initial_path( "foo" )
+        Specifies the path which is in the first path always.
 
-    % make install
+    quote_char( q{'} )
+        Specifies how this mobule quotes a word.
 
-DOCUMENTATION
+    debug( 1 )
+        Warns in some process.
 
-XML::XPathBuilder documentation is available as in POD. So you can do:
+METHODS
+    find( $path )
+        Pushes a path to paths. The paths is for result of building.
 
-    % perldoc XML::XPathBuilder
+    start( $path )
+        Processes almost same thing with find, but start always cleans up
+        paths. After cleaning, set a path which is argument to the paths.
 
-to read the documentation online with your favorite pager.
+    include( $string )
+        Adds a path to the paths, but has a bit modification that changes
+        word to XPath's word.
 
-kuniyoshi
+    eq( $number )
+        Selects a element which appears in $number order.
+
+    up  Moves to the upper path.
+
+    stop
+        Remove previous path.
+
+    end Builds up XPath's path.
+
+AUTHOR
+    kuniyoshi <kuniyoshi@cpan.org>
+
+SEE ALSO
+    XML::XPath
+
+LICENSE
+    This library is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
 
